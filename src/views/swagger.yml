@@ -1,0 +1,48 @@
+swagger: "2.0"
+info:
+  title: "XGBoost Anomaly Detection API"
+  description: "API pour entraîner et utiliser un modèle XGBoost pour la détection d'anomalies."
+  version: "1.0.0"
+host: "localhost:5001"
+schemes:
+  - "http"
+paths:
+  /:
+    get:
+      summary: "Home"
+      description: "Affiche un message de bienvenue."
+      responses:
+        200:
+          description: "API is running successfully"
+  /train:
+    post:
+      summary: "Train Model"
+      description: "Entraîne et sauvegarde le modèle XGBoost."
+      responses:
+        200:
+          description: "Model trained successfully"
+  /predict:
+    post:
+      summary: "Make Prediction"
+      description: "Effectue une prédiction d'anomalie sur des données fournies."
+      parameters:
+        - in: "body"
+          name: "data"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              data:
+                type: "array"
+                items:
+                  type: "number"
+      responses:
+        200:
+          description: "Prediction result"
+  /evaluate:
+    get:
+      summary: "Evaluate Model"
+      description: "Renvoie les scores d'évaluation du modèle."
+      responses:
+        200:
+          description: "Model evaluation scores"
